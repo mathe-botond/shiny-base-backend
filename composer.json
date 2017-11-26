@@ -1,0 +1,21 @@
+{
+    "name": "dexx/shiny-base-backend",
+    "type": "project",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Mathe E. Botond",
+            "email": "mathe.e.botond@gmail.com"
+        }
+    ],
+    "require": {},
+	"config": {
+		"vendor-dir": "lib"
+	},
+	"autoload": {
+        "psr-4": {
+			"ShinyBaseWeb\\": "web/",
+			"QeyWork\\": "qeyWork/"
+		}
+    }
+}

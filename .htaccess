@@ -1,0 +1,12 @@
+RewriteEngine on
+
+RewriteRule ^sitemap.xml$ sitemap.php [L]
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^q/(.*)$ action.php?_target=$1&%1 [L]
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteCond %{REQUEST_URI} !="q/(.*)"
+RewriteRule ^(index.php)?([^.]*)$ index.php?_target=$2&%1 [L]
+
+SetEnv TZ Europe/Bucharest
