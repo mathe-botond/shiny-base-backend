@@ -3,7 +3,7 @@
  * Author: Mathe E. Botond
  */
 
-namespace ShinyBaseWeb\Business\Controller;
+namespace ShinyBaseWeb\Business\Controller\Calendar;
 
 use QeyWork\Common\Actions\JsonAction;
 use QeyWork\Entities\ArrayEntityMapper;
@@ -13,7 +13,7 @@ use ShinyBaseWeb\Business\Model\CalendarEvent;
 use ShinyBaseWeb\Business\Model\Order;
 use ShinyBaseWeb\Responder;
 
-class SaveCalendarAction extends JsonAction {
+class SaveCalendar extends JsonAction {
     const ROUTE = 'save-calendar-change';
 
     /** @var EntityManager */

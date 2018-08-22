@@ -16,7 +16,13 @@ class CalendarEvent {
         $event->id = $order->getIdField()->value();
         $event->start = $order->taskStart->value();
         $event->end = $order->taskEnd->value();
-        $event->title = $order->price->value() . ' - ' . $order->details->value();
+        $customerInfo = '?';
+        if (! $order->customer->isEmpty()) {
+            /** @var Customer $customer */
+            $customer = $order->customer->getEntity();
+            $customerInfo = $customer->name->value() . ' ' . $customer->getPhoneFormatted();
+        }
+        $event->title = $customerInfo . ' - ' . $order->details->value();
         return $event;
     }
 

@@ -29,6 +29,9 @@ class Order extends Entity
     public $details;
 
     /** @var Field */
+    public $isEmergency;
+
+    /** @var Field */
     public $taskStart;
 
     /** @var Field */
@@ -42,6 +45,9 @@ class Order extends Entity
         }
         $this->customer = new ReferenceField("customer", new Customer());
         $this->customer->setEntity($customer);
+
+        $this->isEmergency = new Field("is_emergency");
+        $this->isEmergency->setValue(0);
 
         $this->taskStart = new DateTimeField("task_start");
         $this->taskStart->setNow();

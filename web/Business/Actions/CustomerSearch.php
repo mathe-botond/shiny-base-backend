@@ -13,7 +13,7 @@ use ShinyBaseWeb\Business\Dao\CustomerDao;
 use ShinyBaseWeb\Business\Model\Customer;
 use ShinyBaseWeb\Responder;
 
-class FindCustomerAction extends JsonAction
+class CustomerSearch extends JsonAction
 {
     const ROUTE = 'find-customer';
 

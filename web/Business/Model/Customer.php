@@ -25,4 +25,8 @@ class Customer extends Entity
         parent::__construct(new EntityDbData(ShinyBaseWeb::DB_PREFIX . self::TABLE_NAME));
         $this->addClassPropertiesAsFields();
     }
+
+    public function getPhoneFormatted() {
+        return preg_replace('/(\d{4})(\d{2})(\d{2})(\d{2})/', '$1-$2-$3-$4', $this->phone->value());
+    }
 }

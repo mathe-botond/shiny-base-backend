@@ -3,9 +3,10 @@
  * Author: Mathe E. Botond
  */
 
-namespace ShinyBaseWeb\Business\Controller;
+namespace ShinyBaseWeb\Business\Controller\Calendar;
 
 use QeyWork\Common\IAction;
+use QeyWork\Entities\Persistence\EntityManager;
 use QeyWork\Resources\Db\ConditionList;
 use QeyWork\Resources\Db\DB;
 use QeyWork\Resources\Db\Join;
@@ -15,7 +16,7 @@ use ShinyBaseWeb\Business\Model\CalendarEvent;
 use ShinyBaseWeb\Business\Model\Order;
 use ShinyBaseWeb\Responder;
 
-class OrdersCalendarAction implements IAction {
+class OrdersCalendar implements IAction {
     const ROUTE = 'orders-calendar';
 
     /** @var Request */
@@ -24,11 +25,15 @@ class OrdersCalendarAction implements IAction {
     /** @var DB */
     private $db;
 
+    /** @var EntityManager */
+    private $manager;
+
     function __construct(Request $request,
-                 Db $db) {
+                 Db $db, EntityManager $manager) {
 
         $this->request = $request;
         $this->db = $db;
+        $this->manager = $manager;
     }
 
     public function execute() {
@@ -50,7 +55,12 @@ class OrdersCalendarAction implements IAction {
         $endConditions->add($entity->taskEnd)->greaterOrEqualThen($start);
         $main->addConditionList($endConditions);
 
-        return $this->db->search($entity, $main);
+        $result = $this->db->search($entity, $main);
+        foreach ($result as $row) {
+            /** @var Order $row */
+            $this->manager->loadReferences($row);
+        }
+        return $result;
     }
 
     private function convertResponse($orders) {

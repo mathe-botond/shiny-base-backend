@@ -1,0 +1,1 @@
+ALTER TABLE `shiny_order` ADD `is_emergency` INT(1) NOT NULL DEFAULT '0' AFTER `details`;

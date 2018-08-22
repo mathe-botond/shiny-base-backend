@@ -6,13 +6,14 @@ use QeyWork\Common\IWebsiteBuilder;
 use QeyWork\QeyWork;
 use QeyWork\Tools\Logger;
 use ShinyBaseWeb\Auth\LoginAction;
-use ShinyBaseWeb\Business\Controller\FindCustomerAction;
-use ShinyBaseWeb\Business\Controller\ListOrderAction;
-use ShinyBaseWeb\Business\Controller\OrdersCalendarAction;
-use ShinyBaseWeb\Business\Controller\ProductSearchAction;
-use ShinyBaseWeb\Business\Controller\SaveCalendarAction;
-use ShinyBaseWeb\Business\Controller\SaveCustomerAction;
-use ShinyBaseWeb\Business\Controller\SaveOrderAction;
+use ShinyBaseWeb\Business\Controller\Calendar\OrdersCalendar;
+use ShinyBaseWeb\Business\Controller\Calendar\SaveCalendar;
+use ShinyBaseWeb\Business\Controller\CustomerSearch;
+use ShinyBaseWeb\Business\Controller\DataInput\SaveCustomer;
+use ShinyBaseWeb\Business\Controller\DataInput\SaveOrder;
+use ShinyBaseWeb\Business\Controller\OrderList;
+use ShinyBaseWeb\Business\Controller\ProductSearch;
+use ShinyBaseWeb\Business\Components\PhoneExport\PhoneExportPage;
 use ShinyBaseWeb\Common\JsonErrorResponder;
 use ShinyBaseWeb\Root\RootPage;
 
@@ -37,6 +38,7 @@ class ShinyBaseWeb implements IWebsiteBuilder
     /** @return IRenderer */
     public function getAsRenderer() {
         $this->engine->registerPageClass(RootPage::ROUTE, RootPage::class);
+        $this->engine->registerPageClass(PhoneExportPage::ROUTE, PhoneExportPage::class);
         return $this->engine;
     }
 
@@ -44,13 +46,13 @@ class ShinyBaseWeb implements IWebsiteBuilder
     public function getAsProcessor() {
         $this->engine->registerActionErrorHandler(JsonErrorResponder::class);
         $this->engine->registerActionClass(LoginAction::ROUTE, LoginAction::class);
-        $this->engine->registerActionClass(ProductSearchAction::ROUTE, ProductSearchAction::class);
-        $this->engine->registerActionClass(FindCustomerAction::ROUTE, FindCustomerAction::class);
-        $this->engine->registerActionClass(SaveCustomerAction::ROUTE, SaveCustomerAction::class);
-        $this->engine->registerActionClass(SaveOrderAction::ROUTE, SaveOrderAction::class);
-        $this->engine->registerActionClass(ListOrderAction::ROUTE, ListOrderAction::class);
-        $this->engine->registerActionClass(OrdersCalendarAction::ROUTE, OrdersCalendarAction::class);
-        $this->engine->registerActionClass(SaveCalendarAction::ROUTE, SaveCalendarAction::class);
+        $this->engine->registerActionClass(ProductSearch::ROUTE, ProductSearch::class);
+        $this->engine->registerActionClass(CustomerSearch::ROUTE, CustomerSearch::class);
+        $this->engine->registerActionClass(SaveCustomer::ROUTE, SaveCustomer::class);
+        $this->engine->registerActionClass(SaveOrder::ROUTE, SaveOrder::class);
+        $this->engine->registerActionClass(OrderList::ROUTE, OrderList::class);
+        $this->engine->registerActionClass(OrdersCalendar::ROUTE, OrdersCalendar::class);
+        $this->engine->registerActionClass(SaveCalendar::ROUTE, SaveCalendar::class);
         return $this->engine;
     }
 }

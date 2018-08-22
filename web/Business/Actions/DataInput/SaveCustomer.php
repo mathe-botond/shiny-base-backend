@@ -3,7 +3,7 @@
  * Author: Mathe E. Botond
  */
 
-namespace ShinyBaseWeb\Business\Controller;
+namespace ShinyBaseWeb\Business\Controller\DataInput;
 
 use QeyWork\Common\Actions\JsonAction;
 use QeyWork\Entities\ArrayEntityMapper;
@@ -13,7 +13,7 @@ use ShinyBaseWeb\Business\Dao\CustomerDao;
 use ShinyBaseWeb\Business\Model\Customer;
 use ShinyBaseWeb\Responder;
 
-class SaveCustomerAction extends JsonAction
+class SaveCustomer extends JsonAction
 {
     const ROUTE = 'save-customer';
 
@@ -40,6 +40,6 @@ class SaveCustomerAction extends JsonAction
     public function executeOnBody($customer) {
         /** @var Customer $customer */
         $this->manager->save($customer);
-        $this->responder->success();
+        $this->responder->success('', $customer->getId());
     }
 }

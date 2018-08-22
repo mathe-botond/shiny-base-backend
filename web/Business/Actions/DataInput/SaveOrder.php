@@ -2,7 +2,7 @@
 /**
  * Author: Mathe E. Botond
  */
-namespace ShinyBaseWeb\Business\Controller;
+namespace ShinyBaseWeb\Business\Controller\DataInput;
 
 use QeyWork\Common\Actions\JsonAction;
 use QeyWork\Entities\ArrayEntityMapper;
@@ -12,7 +12,7 @@ use ShinyBaseWeb\Business\Model\Customer;
 use ShinyBaseWeb\Business\Model\Order;
 use ShinyBaseWeb\Responder;
 
-class SaveOrderAction extends JsonAction
+class SaveOrder extends JsonAction
 {
     const ROUTE = "save-order";
 

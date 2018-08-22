@@ -12,7 +12,7 @@ use QeyWork\Resources\Request;
 use ShinyBaseWeb\Business\Model\Product;
 use ShinyBaseWeb\Responder;
 
-class ProductSearchAction
+class ProductSearch
 {
     const SEARCH = "search";
     const ROUTE = "product";
